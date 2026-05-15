@@ -236,7 +236,26 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    # store relics that still need to be visited
+    relics_remaining = set(relics)
+
+    # store relics in the order they're visited
+    relics_visited_order = []
+
+    # if spawn node is also a relic
+    if spawn in relics_remaining:
+        relics_remaining.remove(spawn)
+        relics_visited_order.append(spawn)
+
+    # store best route
+    # first slot is the lowest torch fuel cost found so far
+    # second slot is a list of the corresponding order that the relics were visited
+    best = [float("inf"), []]
+
+    # start recursive search from the spawn node
+    _explore(dist_table, spawn, relics_remaining, relics_visited_order, 0, exit_node, best)
+
+    return (best[0], best[1])
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -268,7 +287,50 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    
+    # Pruning is safe because if the partial route is already as expensive as the best completed route,
+    # continuing the search can't generate a lower total torch fuel cost.
+    if cost_so_far >= best[0]:
+        return
+    
+    # Base case: all the relics are collected
+    if len(relics_remaining) == 0:
+
+        # add cost from the current location to the exit node
+        cost_to_exit = dist_table[current_loc][exit_node]
+        total_cost = cost_so_far + cost_to_exit
+
+        # update best solution if it's cheaper
+        if total_cost < best[0]:
+            best[0] = total_cost
+
+            # store the corresponding order of visiting the relics
+            best[1] = relics_visited_order.copy()
+
+        return
+
+    # try every relic remaining
+    for relic in list(relics_remaining):
+
+        # shortest-path cost from current node to this relic
+        cost_to_relic = dist_table[current_loc][relic]
+
+        # skip unreachable relics
+        if cost_to_relic == float("inf"):
+            continue
+
+        # remove relic from relics remaining
+        relics_remaining.remove(relic)
+
+        # add relic to route order
+        relics_visited_order.append(relic)
+
+        # continue search
+        _explore(dist_table, relic, relics_remaining, relics_visited_order, cost_so_far + cost_to_relic, exit_node, best)
+
+        # undo changes before trying next possibility
+        relics_visited_order.pop()
+        relics_remaining.add(relic)
 
 
 # =============================================================================
