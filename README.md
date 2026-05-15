@@ -144,9 +144,9 @@ Correct distances would ensure that the route planner compares the different ord
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | current_loc | node | The current node that the search is on |
+| Relics already collected | relics_visted_order | list[node] | Relics collected so far in order they were visited|
+| Fuel cost so far | cost_so_far | float | Total torch fuel cost so far |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -154,18 +154,20 @@ Correct distances would ensure that the route planner compares the different ord
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | set |
+| Operation: check if relic already collected | Time complexity: O(1) average case |
+| Operation: mark a relic as collected | Time complexity: O(1) average case |
+| Operation: unmark a relic (backtrack) | Time complexity: O(1) average case |
+| Why this structure fits | A set is able to remove and re-add relics efficiently during recursive backtracking |
 
 ### Part 5c: Worst-Case Search Space
 
 > Two bullets.
 
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** 
+  Worst-case number of orders is k!
+- **Why:** 
+  If there are k relics, the worst case is that the search will have to try every possible order.
 
 ---
 
@@ -175,23 +177,29 @@ Correct distances would ensure that the route planner compares the different ord
 
 > Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:**
+  The best complete route so far with its torch fuel cost and the order it visited each relic.
+- **When it is used:**
+  It's used whenever the search completes a route or checks whether a partial route can give a lower torch fuel cost.
+- **What it allows the algorithm to skip:**
+  It allows the algorithm to skip partial routes that are already more expensive than the best route found so far.
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:**
+  The current location, the torch fuel cost so far, the relics remaining, and the shortest-path costs.
+- **What the lower bound accounts for:**
+  It accounts for the torch fuel cost so far and an optimistic esimate of the best-case remaining torch-fuel cost to complete the route.
+- **Why it never overestimates:**
+  It never overestimates because to make its estimates, it only uses the shortest-path costs, which are already the minimum costs to travel between nodes.
 
 ### Part 6c: Pruning Correctness
 
 > One to two bullets. Explain why pruning is safe.
 
-- _Your answer here._
+- It's safe because if the current route's cost is already as expensive as the best route found so far, then it can't generate a better cost.
 
 ---
 
@@ -199,4 +207,5 @@ Correct distances would ensure that the route planner compares the different ord
 
 > Bullet list. If none beyond lecture notes, write that.
 
-- _Your references here._
+- lecture notes
+- Abdul Bari Algorithms playlist on Youtube
