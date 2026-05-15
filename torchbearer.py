@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: Ryan Racela
+Student ID:   133032559
 
 INSTRUCTIONS
 ------------
@@ -34,7 +34,7 @@ def explain_problem():
 
     TODO
     """
-    return "TODO"
+    return "A shortest-path run isn't enough because you also have to account for what relics you've collected, what order to visit each relic, and the fact that you might have to make decisions that don't seem optimal intially in order to reach the overall optimal solution."
 
 
 # =============================================================================
