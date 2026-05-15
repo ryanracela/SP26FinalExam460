@@ -110,17 +110,28 @@ Correct distances would ensure that the route planner compares the different ord
 > State the failure mode. Then give a concrete counter-example using specific node names
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** 
+  Greedy can choose the next closest relic, but it might not give the lowest torch fuel cost in the end.
+- **Counter-example setup:**
+  Similar to the illustration example from the spec, suppose the entrance node is S, the relic chambers are B, C, and D, the exit node is T, and the inter-location travel costs are as follows:
+  | From \ To | B   | C   | D   | T   |
+  |-----------|-----|-----|-----|-----|
+  | S         | 1   | 2   | 2   | --  |
+  | B         | --  | 100 | 100 | 1   |
+  | C         | 1   | --  | 1   | 100 |
+  | D         | 1   | 1   | --  | 1   |
+- **What greedy picks:**
+  Greedy would pick B first because going from S to B would cost 1, which is the lowest first cost.
+- **What optimal picks:**
+  The optimal method would pick C, because the optimal order would be S -> C -> D -> B -> T.
+- **Why greedy loses:**
+  Greedy loses because it would choose S -> B -> C -> D -> T with a total torch fuel cost of 103, while the optimal method would choose S -> C -> D -> B -> T with a total fuel cost of 5.
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _Your answer here._
+- The algorithm must explore different orders of visiting the relic chambers instead of just choosing the closest relic.
 
 ---
 
