@@ -168,7 +168,16 @@ def dijkstra_invariant_check():
 
     TODO
     """
-    return "TODO"
+    return (
+        "The stored values of finalized nodes are the true lowest torch fuel cost from the source node. "
+        "The stored values of unfinalized nodes are the lowest cost for now, but may decrease. "
+        "Initialization holds because the source node starts at 0 and all other nodes start at infinity since no paths to them were discovered yet. "
+        "Maintenance holds because the algorithm always chooses the unfinished node with the lowest known torch fuel cost. "
+        "The edge weights are nonnegative, so every other path afterwards would either have an equal or greater cost."
+        "Termination holds because When the algorithm ends, every reachable node's fuel cost is correct. "
+        "Any node still at infinity isn't reachable from the source node."
+        "Correct distances would ensure that the route planner compares the different orders of visiting the relic chambers using accurate costs of torch fuel."
+        )
 
 
 # =============================================================================
