@@ -56,7 +56,18 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    # start with spawn node
+    sources = [spawn]
+
+    # add each relic node as a source
+    for relic in relics:
+
+        # prevent duplicates
+        if relic not in sources:
+            sources.append(relic)
+
+    # return list of source nodes
+    return sources
 
 
 def run_dijkstra(graph, source):
@@ -75,7 +86,41 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    pass
+    # store distances
+    distances = {}
+
+    # assume all distances are unreachable for now
+    for node in graph:
+        distances[node] = float("inf")
+
+    # distance from source to itself is 0
+    distances[source] = 0
+
+    # store (distance from source, node) in priority queue
+    pq = [(0, source)]
+
+    # continue for each node
+    while pq:
+
+        # remove node with shortest distance
+        current_dist, current_node = heapq.heappop(pq)
+
+        # go to all outgoing edges
+        for neighbor, cost in graph[current_node]:
+
+            # compute new possible distance
+            new_dist = current_dist + cost
+
+            # update if there's a new shorter path
+            if new_dist < distances[neighbor]:
+
+                # store new distance
+                distances[neighbor] = new_dist
+
+                # add updated distance to priority queue
+                heapq.heappush(pq, (new_dist, neighbor))
+
+    return distances
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -95,8 +140,19 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    # select which nodes are source nodes
+    sources = select_sources(spawn, relics, exit_node)
 
+    # nested dictionary
+    dist_table = {}
+
+    # run dijkstra from every source node
+    for source in sources:
+
+        # store all shortest path distances
+        dist_table[source] = run_dijkstra(graph, source)
+
+    return dist_table
 
 # =============================================================================
 # PART 3
