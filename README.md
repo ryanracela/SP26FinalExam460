@@ -77,29 +77,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  Their stored values are the true lowest torch fuel cost from the source node.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  Their stored values are the lowest torch fuel cost for now, but they might improve later on.
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  The source node starts with a torch fuel cost of 0 because it costs nothing to reach itself. All of the other nodes start at infinity because no paths to them have been discovered yet.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  The algorithm always chooses the unfinished node with the lowest known torch fuel cost. The edge weights are nonnegative, so every other path afterwards would either have an equal or greater cost.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  When the algorithm ends, every reachable node's fuel cost is correct. Any node still at infinity isn't reachable from the source node.
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+Correct distances would ensure that the route planner compares the different orders of visiting the relic chambers using accurate costs of torch fuel.
 
 ---
 
