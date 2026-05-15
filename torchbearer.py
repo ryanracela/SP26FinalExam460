@@ -354,7 +354,11 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    # precompute shortest-path distances between spawn and relic nodes
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+
+    # find the cheapest relic visit order
+    return find_optimal_route(dist_table, spawn, relics, exit_node)
 
 
 # =============================================================================
