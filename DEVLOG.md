@@ -1,7 +1,7 @@
 # Development Log – The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Ryan Racela
+**Student ID:** 133032559
 
 > Instructions: Write at least four dated entries. Required entry types are marked below.
 > Two to five sentences per entry is sufficient. Write entries as you go, not all in one
@@ -10,16 +10,16 @@
 
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [5/14/26]: Initial Plan
 
 > Required. Write this before writing any code. Describe your plan: what you will
 > implement first, what parts you expect to be difficult, and how you plan to test.
 
-_Your entry here._
+First, I need to understand why this isn't just a normal shortest-path problem. I think my first implementation step would be to calculate the shortest distances between the relic locations, since I'm going to need those distances later on. The most difficult part would probably be tracking the state of the nodes and figuring out how to get the best relic collection order. I plan to test each part with small custom graphs before trying larger ones, along with using the provided tests.
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [5/14/26]: [Short description]
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
@@ -28,13 +28,13 @@ _Your entry here._
 
 ---
 
-## Entry 3 – [Date]: [Short description]
+## Entry 3 – [5/14/26]: [Short description]
 
 _Your entry here._
 
 ---
 
-## Entry 4 – [Date]: Post-Implementation Reflection
+## Entry 4 – [5/14/26]: Post-Implementation Reflection
 
 > Required. Written after your implementation is complete. Describe what you would
 > change or improve given more time.
@@ -43,7 +43,7 @@ _Your entry here._
 
 ---
 
-## Final Entry – [Date]: Time Estimate
+## Final Entry – [5/14/26]: Time Estimate
 
 > Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
 
