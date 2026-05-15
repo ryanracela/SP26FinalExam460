@@ -19,12 +19,12 @@ First, I need to understand why this isn't just a normal shortest-path problem. 
 
 ---
 
-## Entry 2 – [5/14/26]: [Short description]
+## Entry 2 – [5/14/26]: [Change in Precomputation Design]
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
+In my precomputation design, I first thought that the exit node was a source, but I realized that it shouldn't because we don't need the distance to the exit, and not from it. So, I decided that only the spawn node and the relic nodes should be the source nodes. This affected the complexity because before, the number of Dijkstra runs would be the number of relics + 2, but now it's the number of relics + 1.
 
 ---
 
@@ -49,8 +49,8 @@ _Your entry here._
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
+| Part 1: Problem Analysis | 30 |
+| Part 2: Precomputation Design | 75 |
 | Part 3: Algorithm Correctness | |
 | Part 4: Search Design | |
 | Part 5: State and Search Space | |
