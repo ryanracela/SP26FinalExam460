@@ -35,8 +35,8 @@
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| Entrance node | The walk begins here, so we need to know the cheapest way from this node to each relic |
+| Relic chamber node | After collecting the relic at this node, your next move has to start from this node |
 
 ### Part 2b: Distance Storage
 
@@ -44,20 +44,25 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | Nested dictionary / distance table |
+| What the keys represent | Outer keys are the source nodes and inner keys are the destination nodes |
+| What the values represent | Shortest path cost from the source node to destination node |
+| Lookup time complexity | Average case O(1) |
+| Why O(1) lookup is possible | Dictionaries in Python use hash table lookup by key |
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** 
+    number of relics + 1
+- **Cost per run:** 
+    O((V + E) log V)
+- **Total complexity:** 
+    (R + 1) * O((V + E) log V)
+    = O((R + 1)(V + E) log V)
+- **Justification (one line):** 
+    Dijkstra is run once from the spawn node and then once from each relic node R
 
 ---
 
