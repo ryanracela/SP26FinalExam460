@@ -28,22 +28,22 @@ In my precomputation design, I first thought that the exit node was a source, bu
 
 ---
 
-## Entry 3 – [5/14/26]: [Short description]
+## Entry 3 – [5/15/26]: [Recursive Search Fix]
 
-_Your entry here._
+When I was implementing def _explore, I realized that after each recursive call, I need to undo the changes made to the list of visited relics and the relics remaining so that all the other possible orders can be tried correctly. I also figured out that I needed to use the copy operation when saving the best route because when I didn't, best[1] would reference the same list object, so the changes made in backtracking would modify the solution that was saved.
 
 ---
 
-## Entry 4 – [5/14/26]: Post-Implementation Reflection
+## Entry 4 – [5/15/26]: Post-Implementation Reflection
 
 > Required. Written after your implementation is complete. Describe what you would
 > change or improve given more time.
 
-_Your entry here._
+If I had more time, I think I could strengthen my pruning condition. What I have is really simple, so with more time, I think I could figure out a way to make it stronger. I could also come up with more specific tests for edge cases. I know we're only supposed to return the relic visit order, but I think it would be nice to make it where it returns the whole node-by-node walk instead.
 
 ---
 
-## Final Entry – [5/14/26]: Time Estimate
+## Final Entry – [5/15/26]: Time Estimate
 
 > Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
 
@@ -51,10 +51,10 @@ _Your entry here._
 |---|---|
 | Part 1: Problem Analysis | 30 |
 | Part 2: Precomputation Design | 75 |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part 3: Algorithm Correctness | 20 |
+| Part 4: Search Design | 30 |
+| Part 5: State and Search Space | 60 |
+| Part 6: Pruning | 60 |
+| Part 7: Implementation | 60 |
+| README and DEVLOG writing | 90 |
+| **Total** | 425 |
